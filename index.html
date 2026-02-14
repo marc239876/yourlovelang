@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will you be my Valentine? 💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #ffdde1 0%, #f9c9d1 100%);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Floating hearts */
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart-float {
+            position: absolute;
+            color: rgba(255, 105, 135, 0.3);
+            font-size: 1.8rem;
+            animation: floatUp 10s linear infinite;
+            user-select: none;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(255, 230, 240, 0.9) inset;
+            padding: 2.5rem 3rem;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.8rem;
+            color: #b23e5c;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(255, 220, 230, 0.8);
+            letter-spacing: 1px;
+        }
+
+        .name-input {
+            border: 2px solid #ffb6c1;
+            border-radius: 60px;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            width: 80%;
+            max-width: 320px;
+            margin: 1.5rem 0;
+            outline: none;
+            background: rgba(255, 255, 255, 0.9);
+            color: #a3415b;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .name-input:focus {
+            border-color: #ff6f91;
+            box-shadow: 0 0 15px #ffb6c1;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 60px;
+            padding: 0.9rem 2.2rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: #ff6f91;
+            color: white;
+            border-color: #ffd9e2;
+        }
+
+        .btn-primary:hover {
+            background: #ff4d74;
+            transform: scale(1.05);
+            box-shadow: 0 12px 25px #ff9eb5;
+        }
+
+        .btn-yes {
+            background: #ff4d6d;
+            color: white;
+            border-color: #ffb3c6;
+            animation: pulse 1.8s infinite;
+            margin-right: 20px;
+        }
+
+        .btn-no {
+            background: #ffe2e9;
+            color: #b23e5c;
+            border-color: #ffb3c6;
+            position: relative;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            70% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .button-pair {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0 20px;
+            min-height: 90px;
+            position: relative;
+        }
+
+        #responseBox {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: #b23e5c;
+            line-height: 1.5;
+            margin-top: 30px;
+            min-height: 200px;
+            text-align: center;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-right: 2px solid #b23e5c;
+            display: inline-block;
+            padding-right: 8px;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #b23e5c; }
+        }
+
+        .finish-blink {
+            border-right: none !important;
+            animation: none;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #ac3f5b;
+            font-style: italic;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #ff99aa;
+            top: 0;
+            opacity: 0.7;
+            border-radius: 50%;
+            animation: confettiFall 3s linear forwards;
+            z-index: 999;
+        }
+
+        @keyframes confettiFall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="heartContainer"></div>
+
+    <!-- Card 1: Input name -->
+    <div id="card1" class="card">
+        <h1>💖 Valentine 💖</h1>
+        <p style="font-size:1.2rem; color:#8f435b;">Before we start, what's your name?</p>
+        <input type="text" id="userName" class="name-input" placeholder="Your sweet name..." autofocus>
+        <button class="btn btn-primary" id="startBtn">Continue</button>
+        <footer>with love, from me</footer>
+    </div>
+
+    <!-- Card 2: Main Valentine (hidden) -->
+    <div id="card2" class="card hidden">
+        <h1 id="greetingMsg">Will you be my Valentine?</h1>
+        <div class="button-pair" id="btnContainer">
+            <button class="btn btn-yes" id="yesBtn">Yes ❤️</button>
+            <button class="btn btn-no" id="noBtn">No</button>
+        </div>
+        <div id="responseBox"></div>
+        <footer>with love, from me</footer>
+    </div>
+
+    <script>
+        (function() {
+            // Floating hearts generator
+            const heartContainer = document.getElementById('heartContainer');
+            function addFloatingHeart() {
+                const heart = document.createElement('div');
+                heart.className = 'heart-float';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
+                heart.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+                heart.style.opacity = Math.random() * 0.4 + 0.2;
+                heartContainer.appendChild(heart);
+                setTimeout(() => heart.remove(), 12000);
+            }
+            setInterval(addFloatingHeart, 400);
+
+            // Elements
+            const card1 = document.getElementById('card1');
+            const card2 = document.getElementById('card2');
+            const userNameInput = document.getElementById('userName');
+            const startBtn = document.getElementById('startBtn');
+            const greetingMsg = document.getElementById('greetingMsg');
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            const btnContainer = document.getElementById('btnContainer');
+            const responseBox = document.getElementById('responseBox');
+
+            let name = '';
+
+            // Start button
+            startBtn.addEventListener('click', function() {
+                const inputName = userNameInput.value.trim();
+                if (inputName === '') {
+                    alert('Please enter your name, lovely! 💕');
+                    return;
+                }
+                name = inputName;
+                greetingMsg.innerText = `Hi ${name}, will you be my Valentine?`;
+                card1.classList.add('hidden');
+                card2.classList.remove('hidden');
+            });
+
+            // No button evade
+            function moveNoButton() {
+                const containerRect = btnContainer.getBoundingClientRect();
+                const btnRect = noBtn.getBoundingClientRect();
+
+                const maxX = containerRect.width - btnRect.width;
+                const maxY = containerRect.height - btnRect.height;
+
+                if (maxX <= 5 || maxY <= 5) return;
+
+                const newX = Math.random() * maxX;
+                const newY = Math.random() * maxY;
+
+                noBtn.style.position = 'absolute';
+                noBtn.style.left = newX + 'px';
+                noBtn.style.top = newY + 'px';
+            }
+
+            noBtn.addEventListener('mouseenter', moveNoButton);
+            noBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                moveNoButton();
+            });
+
+            // Yes button click -> typewriter effect
+            yesBtn.addEventListener('click', function() {
+                // Hide both buttons
+                yesBtn.style.display = 'none';
+                noBtn.style.display = 'none';
+
+                // Romantic lines (personalized)
+                const lines = [
+                    `My dearest ${name},`,
+                    `since you came into my life,`,
+                    `every day feels like Valentine.`,
+                    `You are the most beautiful part of my world.`,
+                    `I love you more than words can say.`,
+                    `Will you be mine forever? ❤️`
+                ];
+
+                let lineIdx = 0;
+                let charIdx = 0;
+                let currentHtml = '';
+                responseBox.innerHTML = ''; // reset
+
+                function typeNext() {
+                    if (lineIdx < lines.length) {
+                        if (charIdx < lines[lineIdx].length) {
+                            currentHtml += lines[lineIdx][charIdx];
+                            responseBox.innerHTML = currentHtml;
+                            charIdx++;
+                            setTimeout(typeNext, 60); // typing speed
+                        } else {
+                            // end of line: add line break if not last line
+                            if (lineIdx < lines.length - 1) {
+                                currentHtml += '<br>';
+                                responseBox.innerHTML = currentHtml;
+                            }
+                            lineIdx++;
+                            charIdx = 0;
+                            setTimeout(typeNext, 400); // pause between lines
+                        }
+                    } else {
+                        // Finished typing
+                        responseBox.classList.add('finish-blink'); // remove cursor
+                        // confetti
+                        for (let i = 0; i < 40; i++) {
+                            launchConfetti();
+                        }
+                    }
+                }
+
+                typeNext();
+            });
+
+            // Confetti
+            function launchConfetti() {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti-piece';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = `hsl(${Math.random() * 20 + 330}, 80%, 70%)`;
+                confetti.style.width = Math.random() * 12 + 5 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.animationDuration = Math.random() * 2 + 2 + 's';
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 3000);
+            }
+
+            // Reset button position on window resize
+            window.addEventListener('resize', function() {
+                noBtn.style.position = 'relative';
+                noBtn.style.left = 'auto';
+                noBtn.style.top = 'auto';
+            });
+        })();
+    </script>
+</body>
+</html>
