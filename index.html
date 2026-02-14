@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Language Quiz for Valentine!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💝 Love Language Quiz 💝</h1>
+            <p>Temukan bahasa cintamu dan pasanganmu! Jawab 15 pertanyaan berikut dengan jujur.</p>
+        </header>
+
+        <main>
+            <div id="quiz-container">
+                <div id="question-container" class="card">
+                    <div id="question-number">Pertanyaan <span id="current-question">1</span>/<span id="total-questions">15</span></div>
+                    <div id="question-text"></div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" name="answer" id="opt1" value="1">
+                            <label for="opt1">1 - Sangat Tidak Setuju</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="answer" id="opt2" value="2">
+                            <label for="opt2">2 - Tidak Setuju</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="answer" id="opt3" value="3">
+                            <label for="opt3">3 - Netral</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="answer" id="opt4" value="4">
+                            <label for="opt4">4 - Setuju</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="answer" id="opt5" value="5">
+                            <label for="opt5">5 - Sangat Setuju</label>
+                        </div>
+                    </div>
+                    <div class="nav-buttons">
+                        <button id="prev-btn" disabled>Sebelumnya</button>
+                        <button id="next-btn">Selanjutnya</button>
+                    </div>
+                </div>
+
+                <div id="result-container" class="card hidden">
+                    <h2>Hasil Kuis Bahasa Cintamu</h2>
+                    <div id="primary-language"></div>
+                    <div id="scores"></div>
+                    <div id="chart"></div>
+                    <button id="restart-btn">Ulangi Kuis</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Dibuat untuk keseruan bersama pasangan | Terinspirasi dari teori Gary Chapman</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
